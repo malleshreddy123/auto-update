@@ -99,6 +99,7 @@ autoUpdater.on('checking-for-update', async () => {
   //});
 
   autoUpdater.requestHeaders = opts.headers;
+  autoUpdater.setFeedURL('https://clockinapp.s3.eu-north-1.amazonaws.com');
 });
 
 autoUpdater.on('update-available', (info) => {
