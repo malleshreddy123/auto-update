@@ -88,11 +88,7 @@ autoUpdater.on('checking-for-update', async () => {
     service: 's3',
     region: 'eu-north-1',
     hostname: 'clockinapp.s3.amazonaws.com',
-    path: 'latest.yml'
-    //protocol: 'https:',
-    //method: 'get',
-    
-    //host: 's3-eu-north-1.amazonaws.com',
+    path: 'latest.yml',
   };
 
   await aws4.sign(opts, {
