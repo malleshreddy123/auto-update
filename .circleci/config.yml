@@ -26,11 +26,11 @@ jobs:
      
       - aws-s3/sync:
           install-aws-cli: true
-          aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
-          aws-secret-access-key: PARAM_AWS_CLI_SECRET_ACCESS_KEY
-          aws-region: PARAM_AWS_CLI_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          aws-region: AWS_DEFAULT_REGION
           from: /root/project/dist/.
-          to: s3://bhavanish1/etime/desktop/
+          to: s3://clockinapp
           when: on_success
 
   build-mac:
@@ -67,11 +67,11 @@ jobs:
 
       - aws-s3/sync:
           install-aws-cli: true
-          aws-access-key-id: PARAM_AWS_CLI_ACCESS_KEY_ID
-          aws-secret-access-key: PARAM_AWS_CLI_SECRET_ACCESS_KEY
-          aws-region: PARAM_AWS_CLI_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          aws-region: AWS_DEFAULT_REGION
           from: /Users/distiller/project/dist/.
-          to: s3://bhavanish1/etime/desktop/
+          to: s3://clockinapp
           when: on_success
 
 workflows:
