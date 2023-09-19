@@ -4,12 +4,12 @@ const { autoUpdater } = require('electron-updater');
 const AWS = require('aws-sdk');
 const aws4 = require('aws4');
 
-const bucketname = 'bhavanish1';
+const bucketname = 'clockinapp';
 
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: 'ap-south-1',
+  region: process.env.AWS_DEFAULT_REGION,
 });
 log.info('AWS.config.update.accessKeyId: ', process.env.AWS_ACCESS_KEY_ID);
 log.info('AWS.config.update.secretAccessKeyId: ', process.env.AWS_SECRET_ACCESS_KEY);
@@ -85,12 +85,12 @@ function createDefaultWindow() {
 
 autoUpdater.on('checking-for-update', async () => {
   let opts = {
-    region: 'ap-south-1',
+    region: 'eu-north-1',
     protocol: 'https:',
     method: 'get',
-    hostname: 'bhavanish1.s3.amazonaws.com',
-    path: '/etime/desktop/latest.yml',
-    host: 's3-ap-south-1.amazonaws.com',
+    hostname: 'clockinapp.s3.amazonaws.com',
+    path: '/latest.yml',
+    host: 's3-eu-north-1.amazonaws.com',
   };
 
   await aws4.sign(opts, {
