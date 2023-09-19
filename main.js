@@ -19,8 +19,7 @@ log.info('S3 Bucket details', s3);
 
 function listS3Objects() {
   const params = {
-    Bucket: bucketname,
-    Prefix: '',
+    Bucket: bucketname,s
   };
 
   s3.listObjects(params, (err, data) => {
@@ -86,11 +85,14 @@ function createDefaultWindow() {
 
 autoUpdater.on('checking-for-update', async () => {
   let opts = {
+    service: 's3',
     region: 'eu-north-1',
-    protocol: 'https:',
-    method: 'get',
     hostname: 'clockinapp.s3.amazonaws.com',
-    host: 's3-eu-north-1.amazonaws.com',
+    path: 'latest.yml'
+    //protocol: 'https:',
+    //method: 'get',
+    
+    //host: 's3-eu-north-1.amazonaws.com',
   };
 
   await aws4.sign(opts, {
