@@ -15,11 +15,12 @@ log.info('AWS.config.update.accessKeyId: ', process.env.AWS_ACCESS_KEY_ID);
 log.info('AWS.config.update.secretAccessKeyId: ', process.env.AWS_SECRET_ACCESS_KEY);
 
 const s3 = new AWS.S3();
+log.info('S3 Bucket details', s3);
 
 function listS3Objects() {
   const params = {
     Bucket: bucketname,
-    Prefix: 'etime/desktop',
+    Prefix: '',
   };
 
   s3.listObjects(params, (err, data) => {
@@ -89,7 +90,6 @@ autoUpdater.on('checking-for-update', async () => {
     protocol: 'https:',
     method: 'get',
     hostname: 'clockinapp.s3.amazonaws.com',
-    path: '/latest.yml',
     host: 's3-eu-north-1.amazonaws.com',
   };
 
@@ -106,13 +106,12 @@ autoUpdater.on('update-available', (info) => {
   sendStatusToWindow('Update available.');
 
   // Define your release path variable elsewhere
-  let update_path = 'latest.yml';
+  
   let opts = {
     service: 's3',
     region: 'eu-north-1', // Use the correct region for your S3 bucket
     method: 'GET',
     host: 'clockinapp.s3.amazonaws.com', // Use your bucket name
-    path: update_path,
   };
   aws4.sign(opts, {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
