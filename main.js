@@ -85,11 +85,10 @@ function createDefaultWindow() {
 
 autoUpdater.on('checking-for-update', async () => {
   let opts = {
+    service:'s3',
     region: 'eu-north-1',
-    protocol: 'https:',
-    method: 'get',
     hostname: 'clockinapp.s3.amazonaws.com',
-    host: 's3-eu-north-1.amazonaws.com',
+    path:'latest.yml',
   };
 
   await aws4.sign(opts, {
@@ -107,10 +106,10 @@ autoUpdater.on('update-available', (info) => {
   // Define your release path variable elsewhere
   
   let opts = {
-    service: 's3',
-    region: 'eu-north-1', // Use the correct region for your S3 bucket
-    method: 'GET',
-    host: 'clockinapp.s3.amazonaws.com', // Use your bucket name
+    service:'s3',
+    region: 'eu-north-1',
+    hostname: 'clockinapp.s3.amazonaws.com',
+    path:'latest.yml',
   };
   aws4.sign(opts, {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
