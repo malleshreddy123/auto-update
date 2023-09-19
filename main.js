@@ -106,12 +106,12 @@ autoUpdater.on('update-available', (info) => {
   sendStatusToWindow('Update available.');
 
   // Define your release path variable elsewhere
-  let update_path = '/etime/desktop/latest.yml';
+  let update_path = 'latest.yml';
   let opts = {
     service: 's3',
-    region: 'ap-south-1', // Use the correct region for your S3 bucket
+    region: 'eu-north-1', // Use the correct region for your S3 bucket
     method: 'GET',
-    host: 'bhavanish1.s3.amazonaws.com', // Use your bucket name
+    host: 'clockinapp.s3.amazonaws.com', // Use your bucket name
     path: update_path,
   };
   aws4.sign(opts, {
