@@ -89,12 +89,14 @@ autoUpdater.on('checking-for-update', async () => {
     region: 'eu-north-1',
     hostname: 'clockinapp.s3.amazonaws.com',
     path:'latest.yml',
-  };
-
-  await aws4.sign(opts, {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  });
+  };
+
+ // await aws4.sign(opts, {
+  //  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  //  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  //});
 
   autoUpdater.requestHeaders = opts.headers;
 });
