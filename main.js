@@ -88,15 +88,16 @@ autoUpdater.on('checking-for-update', async () => {
     service:'s3',
     region: 'eu-north-1',
     hostname: 'clockinapp.s3.amazonaws.com',
+    host: 's3-eu-north-1.amazonaws.com',
     path:'latest.yml',
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   };
 
- // await aws4.sign(opts, {
-  //  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  //  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  //});
+  aws4.sign(opts, {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  });
 
   autoUpdater.requestHeaders = opts.headers;
   autoUpdater.setFeedURL('https://clockinapp.s3.eu-north-1.amazonaws.com');
@@ -112,6 +113,7 @@ autoUpdater.on('update-available', (info) => {
     service:'s3',
     region: 'eu-north-1',
     hostname: 'clockinapp.s3.amazonaws.com',
+    host: 's3-eu-north-1.amazonaws.com',
     path:'latest.yml',
   };
   aws4.sign(opts, {
